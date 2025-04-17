@@ -25,8 +25,8 @@
 #' @return Profile likelihood for `theta` after perturbing element `k` by `h_N`.
 #' @noRd
 
-pl_theta <- function(k, theta, h_N, n, N, Y_unval, Y, X_unval, X, Z, Bspline, comp_dat_all,
-                        theta_pred, gamma_pred, gamma0 = NULL, p0 = NULL, p_val_num = NULL, TOL, MAX_ITER) {
+pl_theta <- function(k, theta, h_N, n, N, Y_unval = NULL, Y, X_unval, X, Z, Bspline, comp_dat_all,
+                        theta_pred, gamma_pred = NULL, gamma0 = NULL, p0 = NULL, p_val_num = NULL, TOL, MAX_ITER) {
   pert <- theta
   pert[k] <- pert[k] + h_N
   pl_params <- profile_out(theta = pert,
@@ -46,9 +46,7 @@ pl_theta <- function(k, theta, h_N, n, N, Y_unval, Y, X_unval, X, Z, Bspline, co
                            p_val_num = p_val_num,
                            TOL = TOL,
                            MAX_ITER = MAX_ITER)
-
-  if(pl_params$converged) 
-  {
+  if(pl_params$converged) {
     od_loglik_pert <- observed_data_loglik(N = N,
                                            n = n,
                                            Y_unval = Y_unval,

@@ -1,6 +1,6 @@
 #' Sieve maximum likelihood estimator (SMLE) for two-phase logistic regression problems
 #'
-#' This function returns the sieve maximum likelihood estimators (SMLE) for the logistic regression model from Lotspeich et al. (2021). See pacakge vigenette for code examples.
+#' This function returns the sieve maximum likelihood estimators (SMLE) for the logistic regression model from Lotspeich et al. (2021).
 #'
 #' @param y_unval Column name of the error-prone or unvalidated binary outcome. This argument is optional. If \code{y_unval = NULL} (the default), \code{y} is treated as error-free.
 #' @param y Column name that stores the validated value of \code{y_unval} in the second phase. Subjects with missing values of \code{y} are considered as those not selected in the second phase. This argument is required.
@@ -15,33 +15,23 @@
 #' @param se If \code{FALSE}, then the variances of the parameter estimators will not be estimated. The default value is \code{TRUE}. This argument is optional.
 #' @param verbose If \code{TRUE}, then show details of the analysis. The default value is \code{FALSE}.
 #'
-#' @details
-#' Models for \code{logistic2ph()} are specified through the arguments. The dataset input should at least contain columns for unvalidated error-prone outcome, validated error-prone outcome,
-#' unvalidated error-prone covariate(s), validated error-prone covariate(s), and B-spline basis. B-spline basis can be generated from \code{splines::bs()} function, with argument \code{x}
-#' being the unvalidated error-prone covariate(s). See vignette for options in tuning the B-spline basis.
-#'
 #' @return
-#' `logistic2ph()` returns an object of class `"logistic2ph"`. The function `coef()` is used to obtain the coefficients of the fitted model. The function `summary()` is used to obtain and print a summary of results.
-#'
-#' An object of class `"logistic2ph"` is a list containing at least the following components:
-#' \item{call}{the matched call.}
-#' \item{coefficients}{A named vector of the logistic regression coefficient estimates.}
-#' \item{covariance}{The covariance matrix of the logistic regression coefficient estimates.}
+#' \item{coefficients}{Stores the analysis results.}
+#' \item{outcome_err_coefficients}{Stores the outcome error model results.}
+#' \item{Bspline_coefficients}{Stores the final B-spline coefficient estimates.}
+#' \item{covariance}{Stores the covariance matrix of the regression coefficient estimates.}
 #' \item{converge}{In parameter estimation, if the EM algorithm converges, then \code{converge = TRUE}. Otherwise, \code{converge = FALSE}.}
 #' \item{converge_cov}{In variance estimation, if the EM algorithm converges, then \code{converge_cov = TRUE}. Otherwise, \code{converge_cov = FALSE}.}
+#' \item{converge_msg}{In parameter estimation, if the EM algorithm does not converge, then \code{converged_msg} is a string description.}
 #'
 #' @references
 #' Lotspeich, S. C., Shepherd, B. E., Amorim, G. G. C., Shaw, P. A., & Tao, R. (2021). Efficient odds ratio estimation under two-phase sampling using error-prone data from a multi-national HIV research cohort. *Biometrics, biom.13512.* https://doi.org/10.1111/biom.13512
 #'
 #' @importFrom stats as.formula
 #' @importFrom stats glm
-#'
-#' @export
+#' @noRd
 
-logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = NULL, b_spline = NULL, data = NULL, hn_scale = 1, se = TRUE, tol = 1E-4, max_iter = 1000, verbose = FALSE) {
-  # Store the function call
-  model_call <- match.call()
-
+logistic2ph_all <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = NULL, b_spline = NULL, data = NULL, hn_scale = 1, se = TRUE, tol = 1E-4, max_iter = 1000, verbose = FALSE) {
   # variable name change
   Y_unval = y_unval; Y = y ; X_unval = x_unval; X = x; Z = z
   Bspline = b_spline; noSE = !se; TOL = tol; MAX_ITER = max_iter
@@ -110,9 +100,12 @@ logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = 
     colnames(res_coefficients) <- c("Estimate", "SE", "Statistic", "p-value")
 
     res_final = list(coefficients = res_coefficients,
+                     outcome_err_coefficients = data.frame(Estimate = rep(NA, length(gamma_pred) + 1)),
+                     Bspline_coefficients = NA,
                      covariance = NA,
                      converge = FALSE,
-                     converge_cov = NA)
+                     converge_cov = NA,
+                     converge_msg = "B-spline error")
 
     return(res_final)
   }
@@ -332,14 +325,19 @@ logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = 
 
     if (errorsY) {
       res_final = list(coefficients = res_coefficients,
+                       outcome_err_coefficients = data.frame(Estimate = rep(NA, length(new_gamma))),
+                       Bspline_coefficients = NA,
                        covariance = NA,
                        converge = FALSE,
-                       converge_cov = NA)
+                       converge_cov = NA,
+                       converge_msg = CONVERGED_MSG)
     } else {
       res_final = list(coefficients = res_coefficients,
+                       Bspline_coefficients = NA,
                        covariance = NA,
                        converge = FALSE,
-                       converge_cov = NA)
+                       converge_cov = NA,
+                       converge_msg = CONVERGED_MSG)
     }
     return(res_final)
   }
@@ -356,14 +354,19 @@ logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = 
 
     if (errorsY) {
       res_final = list(coefficients = res_coefficients,
+                       outcome_err_coefficients = data.frame(Estimate = new_gamma),
+                       Bspline_coefficients = cbind(k = 1:nrow(new_p), x = x_obs, new_p),
                        covariance = NA,
                        converge = CONVERGED,
-                       converge_cov = NA)
+                       converge_cov = NA,
+                       converge_msg = CONVERGED_MSG)
     } else {
       res_final = list(coefficients = res_coefficients,
+                       Bspline_coefficients = cbind(k = 1:nrow(new_p), x = x_obs, new_p),
                        covariance = NA,
                        converge = CONVERGED,
-                       converge_cov = NA)
+                       converge_cov = NA,
+                       converge_msg = CONVERGED_MSG)
     }
     return(res_final)
   } else {
@@ -483,18 +486,15 @@ logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = 
     res_coefficients$pvalue <- 1 - pchisq(res_coefficients$Statistic ^ 2, df = 1)
     colnames(res_coefficients) <- c("Estimate", "SE", "Statistic", "p-value")
 
-    coef_return <- as.numeric(new_theta)
-    names(coef_return) <- rownames(res_coefficients)
-
-    res_final = list(
-                    call = model_call,  # Store the call in the object
-                    coefficients = coef_return,
-                    covariance = cov_theta,
-                    converge = CONVERGED,
-                    converge_cov = SE_CONVERGED)
-
-    res_final <- logistic2ph_class(res_final)
+    res_final = list(coefficients = res_coefficients,
+                     outcome_err_coefficients = data.frame(Estimate = new_gamma),
+                     Bspline_coefficients = cbind(k = 1:nrow(new_p), x = x_obs, new_p),
+                     covariance = cov_theta,
+                     converge = CONVERGED,
+                     converge_cov = SE_CONVERGED,
+                     converge_msg = CONVERGED_MSG)
 
     return(res_final)
   }
 }
+
