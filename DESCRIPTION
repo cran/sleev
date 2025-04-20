@@ -1,7 +1,7 @@
 Package: sleev
 Type: Package
 Title: Semiparametric Likelihood Estimation with Errors in Variables
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: c(person(given = "Sarah", family = "Lotspeich", role = "aut"),
     person(given = "Ran", family = "Tao", role=c("aut","cre"), email = "r.tao@vanderbilt.edu"),
     person(given = "Joey", family = "Sherrill", role = "prg"),
@@ -16,12 +16,13 @@ Suggests: lme4, MASS, rmarkdown, splines, testthat (>= 3.0.0), R.rsp,
         tibble, knitr
 LazyData: true
 Config/testthat/edition: 3
+VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2025-04-17 16:00:48 UTC; taor2
+Packaged: 2025-04-18 20:25:44 UTC; taor2
 Author: Sarah Lotspeich [aut],
   Ran Tao [aut, cre],
   Joey Sherrill [prg],
   Jiangmei Xiong [ctb]
 Maintainer: Ran Tao <r.tao@vanderbilt.edu>
 Repository: CRAN
-Date/Publication: 2025-04-17 16:20:06 UTC
+Date/Publication: 2025-04-20 09:10:02 UTC
