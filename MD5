@@ -1,4 +1,4 @@
-81107f640fee620fd0b2472b84c5dd75 *DESCRIPTION
+246a0d91386bb5cfb7f5e12664358a5b *DESCRIPTION
 b96b937920371bb7816153409468501e *NAMESPACE
 194d65942d498eb6e5e7db5d2ba88ae9 *R/Class.R
 2524b87788c61d11c40a0d5ddd98202f *R/RcppExports.R
@@ -17,13 +17,12 @@ a969fd70e54354e96167c4a746bb4415 *R/profile_out.R
 68c7e91ae0987104d437008e201cf5cc *R/sleev-package.R
 e94b25af962b4c75325dcea3adbca256 *R/spline2ph.R
 f0dc6278e02d3d4ca9d05fa325b0239f *README.md
-68cac7ae0d26862e7329319b0313267a *build/vignette.rds
+dc767a5790f374cc4c3cd093055adc99 *build/vignette.rds
 a8eb16b428d84ae21900907fc9f8221d *data/mock.vccc.rda
 d32239bcb673463ab874e80d47fae504 *inst/LICENSE_sleev.txt
-2b204a4e2ebc8ee2e6e980b5faf8b130 *inst/article/sleev_vignette.pdf
-5b2aa82e274df96a7295b8ef8d76b299 *inst/doc/sleev_vignette.R
-948db0e8dbb8741be4f3d64a45665895 *inst/doc/sleev_vignette.Rmd
-2d19b02516f94715a66183b5abe12c5d *inst/doc/sleev_vignette.pdf
+2c5e26d588c341808fbcd1aaedbe85f9 *inst/article/sleev_vignette.pdf
+36c8bcc8855d5259d3f21fffdd444fbe *inst/doc/sleev_vignette_file.Rnw
+a2ec4c58d6cfdc440f25ae9753538e02 *inst/doc/sleev_vignette_file.pdf
 6f890e19619efb595022e79bda6598dc *inst/misc/run_time_sleev_logistic.rds
 469e82fc57d20f59cff513ef6d456eb0 *inst/misc/run_time_sleev_logreg2ph.rds
 094621f4422f275b50ff613bbdb2e079 *inst/misc/sleev.bib
@@ -52,4 +51,5 @@ ab5ff75169c6399ff85e7c149a1f00a2 *man/summary.logistic2ph.Rd
 e10d2be90d43c387588a5315d2be004b *src/utility.h
 89681d55338e3ba02b391403a61363c2 *tests/testthat.R
 0f315c3430f27ca3f7178f27e08cf5ec *tests/testthat/test-example.R
-948db0e8dbb8741be4f3d64a45665895 *vignettes/sleev_vignette.Rmd
+2c5e26d588c341808fbcd1aaedbe85f9 *vignettes/sleev_vignette.pdf
+36c8bcc8855d5259d3f21fffdd444fbe *vignettes/sleev_vignette_file.Rnw
