@@ -10,7 +10,6 @@ logistic2ph(
   x_unval = NULL,
   x = NULL,
   z = NULL,
-  b_spline = NULL,
   data = NULL,
   hn_scale = 1,
   se = TRUE,
@@ -29,8 +28,6 @@ logistic2ph(
 \item{x}{Specifies the columns that store the validated values of \code{x_unval} in the second phase. Subjects with missing values of \code{x} are considered as those not selected in the second phase. This argument is required.}
 
 \item{z}{Specifies the columns of the accurately measured covariates. This argument is optional.}
-
-\item{b_spline}{Specifies the columns of the B-spline basis. This argument is required.}
 
 \item{data}{Specifies the name of the dataset. This argument is required.}
 
