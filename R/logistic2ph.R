@@ -76,9 +76,9 @@ logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = 
     stop("If X_unval and X are NULL, all predictors are assumed to be error-free. You must define both variables or neither!")
   }
 
-  if (length(data[,X_unval]) != length(data[,X])) {
-    stop("The number of columns in X_unval and X is different!")
-  }
+  # if (length(data[,X_unval]) != length(data[,X])) {
+  #   stop("The number of columns in X_unval and X is different!")
+  # }
 
   # Convert data to data.frame to avoid conflicts with tbl
   data <- data.frame(data)
@@ -89,7 +89,7 @@ logistic2ph <- function(y_unval = NULL, y = NULL, x_unval = NULL, x = NULL, z = 
   # Calculate the validated subjects
   Validated <- logical(N) # initialize a logical vector of length N
   for (i in 1:N) {
-    Validated[i] <- !(is.na(data[i,X]) || is.na(data[i,Y]))
+    Validated[i] <- !any(is.na(data[i, c(Y, X)]))
   }
 
   # n is how many validated subjects there are in data
