@@ -1,7 +1,7 @@
 Package: sleev
 Type: Package
 Title: Semiparametric Likelihood Estimation with Errors in Variables
-Version: 1.1.5
+Version: 1.1.6
 Authors@R: c(person(given = "Sarah", family = "Lotspeich", role = "aut"),
     person(given = "Ran", family = "Tao", role=c("aut","cre"), email = "r.tao@vanderbilt.edu"),
     person(given = "Joey", family = "Sherrill", role = "prg"),
@@ -11,6 +11,7 @@ License: GPL (>= 2)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Depends: Rcpp (>= 1.0.7), R (>= 3.5.0)
+Imports: data.table
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen
 Suggests: lme4, MASS, rmarkdown, splines, testthat (>= 3.0.0), R.rsp,
         tibble, knitr, quarto
@@ -19,11 +20,11 @@ Config/testthat/edition: 3
 URL: https://github.com/dragontaoran/sleev
 BugReports: https://github.com/dragontaoran/sleev/issues
 NeedsCompilation: yes
-Packaged: 2025-09-11 15:11:12 UTC; taor2
+Packaged: 2025-11-17 17:07:53 UTC; taor2
 Author: Sarah Lotspeich [aut],
   Ran Tao [aut, cre],
   Joey Sherrill [prg],
   Jiangmei Xiong [ctb]
 Maintainer: Ran Tao <r.tao@vanderbilt.edu>
 Repository: CRAN
-Date/Publication: 2025-09-11 15:30:02 UTC
+Date/Publication: 2025-11-17 17:30:02 UTC

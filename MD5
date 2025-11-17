@@ -1,5 +1,5 @@
-dc7c58df9230df67fa4f23c9fa20f992 *DESCRIPTION
-b96b937920371bb7816153409468501e *NAMESPACE
+df8fb490efad164598c8349c7ea27e61 *DESCRIPTION
+368e8cf9689bc02aff039b8896e1bf83 *NAMESPACE
 e412a5d4f6a53aa4c0e2760bad3db409 *R/Class.R
 2524b87788c61d11c40a0d5ddd98202f *R/RcppExports.R
 157429e903658e2393d408618450d41b *R/complete_data.R
@@ -8,7 +8,7 @@ b1c61f9471f1113e08c644dccd142ffe *R/cv_linear2ph.R
 9d78a91af4ee005998995001fb54e3db *R/data.R
 476b07431ce62496cf87db15b134454b *R/hessian_row.R
 046f0d75a1c536eb47840c0816a04bb2 *R/linear2ph.R
-733ccf26531a03da4455ae66b958a6f2 *R/logistic2ph.R
+daf146c52df4341e1ec64d457e93f7c1 *R/logistic2ph.R
 f7b7887817287eb37ebdb0c2a82661a4 *R/logistic2ph_all.R
 8f7bd5543cd1ad436b84e94f9dc9b089 *R/logistic2ph_summ.R
 bea17fa2fd008eb35350e744ae82a4de *R/observed_data_loglik.R
@@ -17,11 +17,11 @@ a969fd70e54354e96167c4a746bb4415 *R/profile_out.R
 68c7e91ae0987104d437008e201cf5cc *R/sleev-package.R
 d779922fb31137af0b302aa3957fef30 *R/spline2ph.R
 d6701029dbceb68a96ef350ca7885bc7 *README.md
-99eb8f43152aca1ba681c11eb655ad35 *build/vignette.rds
+d47d2aa61bac73bf8714ce36f38f64ab *build/vignette.rds
 a8eb16b428d84ae21900907fc9f8221d *data/mock.vccc.rda
 2c5e26d588c341808fbcd1aaedbe85f9 *inst/article/sleev_vignette.pdf
 a070fc8be121b0d99994dd3fe6c345c8 *inst/doc/sleev_vignette_file.Rnw
-17f813cc59b3388c23cf63b0ae9f1a97 *inst/doc/sleev_vignette_file.pdf
+35034da4f9d6f1454daaf3a24df7ada0 *inst/doc/sleev_vignette_file.pdf
 6f890e19619efb595022e79bda6598dc *inst/misc/run_time_sleev_logistic.rds
 469e82fc57d20f59cff513ef6d456eb0 *inst/misc/run_time_sleev_logreg2ph.rds
 094621f4422f275b50ff613bbdb2e079 *inst/misc/sleev.bib
@@ -49,7 +49,8 @@ ab5ff75169c6399ff85e7c149a1f00a2 *man/summary.logistic2ph.Rd
 970b0324cfd2ee46f2dc72c047252a62 *src/logistic2ph.cpp
 05774e4eae17c2cee510d8fb54674ec1 *src/utility.cpp
 e10d2be90d43c387588a5315d2be004b *src/utility.h
-89681d55338e3ba02b391403a61363c2 *tests/testthat.R
+7e41bd5438e4a216c072860e4d8f561b *tests/testthat/helper-001-functions.R
+d1456f776096efe63251bdebf6f5552e *tests/testthat/test-001-logistic2ph.R
 0f315c3430f27ca3f7178f27e08cf5ec *tests/testthat/test-example.R
 9713a5487ae04487c3421186ef058317 *vignettes/sleev_vignette.pdf
 a070fc8be121b0d99994dd3fe6c345c8 *vignettes/sleev_vignette_file.Rnw
